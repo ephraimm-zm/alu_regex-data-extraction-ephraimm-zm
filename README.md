@@ -23,7 +23,7 @@ cd alu_regex-data-extraction-ephraimm-zm
 
 2. **Run the Python script**:
 ```bash
-python regex_extractor.py
+python solution.py
 ```
 
 3. **Expected Output**:
