@@ -1,38 +1,28 @@
-#!/usr/bin/env python3
-
 import re
 
-def validate_email(email):
-    """Validate email format."""
-    pattern = r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
-    return bool(re.match(pattern, email))
+email_pattern = r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
 
-def validate_url(url):
-    """Validate URL format."""
-    pattern = r"^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .-]*)*\/?$"
-    return bool(re.match(pattern, url))
+url_pattern = r'https?://(?:www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:/[^\s?#]*)?(?:\?[^\s#]*)?(?:#[^\s]*)?'
 
-def validate_phone_number(phone_number):
-    """Validate phone number format."""
-    pattern = r"^(\(\d{3}\)\s|\d{3}[-.])?\d{3}[-.]\d{4}$"
-    return bool(re.match(pattern, phone_number))
+phone_pattern = r'(\+?\d{1,3}[-.\s]?)?(\(?\d{3}\)?[-.\s]?)?\d{3}[-.\s]?\d{4}'
 
-def validate_credit_card_number(cc_number):
-    """Validate credit card number format."""
-    pattern = r"^\d{4}[-\s]?\d{4}[-\s]?\d{4}[-\s]?\d{4}$"
-    return bool(re.match(pattern, cc_number))
+credit_card_pattern = r'\b(?:\d[ -]*?){13,16}\b'
 
-def validate_time(time_string):
-    """Validate time format (HH:MM)."""
-    pattern = r"^(1[0-2]|0?[1-9]):[0-5][0-9]$"
-    return bool(re.match(pattern, time_string))
+currency_pattern = r'\$-?\d{1,3}(?:,\d{3})*(?:\.\d{2})?'
 
-def validate_hashtags(hashtag):
-    """Validate hashtag format."""
-    pattern = r"^#[A-Za-z0-9_]+$"
-    return bool(re.match(pattern, hashtag))
+def extract_data(pattern, text):
+    return re.findall(pattern, text)
 
-def validate_currency_amount(currency):
-    """Validate currency amount format (e.g., $1,234.56)."""
-    pattern = r"^\$\d{1,3}(,\d{3})*(\.\d{2})?$"
-    return bool(re.match(pattern, currency))
+sample_text = """
+Contact: support@example.com, john.doe+test@company.co.uk
+Website: https://www.example.com, https://sub.example.org/page?ref=home#section
+Phones: (123) 456-7890, 123-456-7890, +1 123 456 7890, 123.456.7890
+Credit cards: 1234 5678 9012 3456, 1234-5678-9012-3456
+Currency: $19.99, $1,234.56, $-500.00
+"""
+
+print("Emails:", extract_data(email_pattern, sample_text))
+print("URLs:", extract_data(url_pattern, sample_text))
+print("Phones:", extract_data(phone_pattern, sample_text))
+print("Credit Cards:", extract_data(credit_card_pattern, sample_text))
+print("Currency:", extract_data(currency_pattern, sample_text))
