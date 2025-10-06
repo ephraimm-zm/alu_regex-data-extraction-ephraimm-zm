@@ -1,7 +1,7 @@
 # ALU Regex Data Extraction - ephraimm-zm
 
 ## Project Overview
-This project demonstrates the use of **Regular Expressions (Regex)** in Python to extract structured data from unstructured text.
+This project aims to demonstrate the use of Regular Expressions in Python. Below is what we will be extracting using Regular Expression
 
 - Email addresses  
 - URLs  
@@ -9,7 +9,7 @@ This project demonstrates the use of **Regular Expressions (Regex)** in Python t
 - Credit card numbers  
 - Currency amounts  
 
-The project is designed as part of the **ALU Regex Data Extraction Assignment** in the Software Engineering program at ALU. The regex patterns handle common edge cases, such as emails with subdomains, URLs with query strings, phone numbers with country codes, credit card numbers in multiple formats, and currency amounts with commas, decimals, and negatives.
+The project uses Pythons built in regular expression module called re. This module gives access to functions and classes for working with text patterns
 
 ---
 
